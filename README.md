@@ -4,7 +4,7 @@ Unofficial app for npmjs.org (currently only for Android).
 
 ## Download
 
-WIP, coming soon...
+https://7xtemu.com1.z0.glb.clouddn.com/apk/npms.apk
 
 ## License
 
