@@ -82,6 +82,31 @@ def enableSeparateBuildPerCPUArchitecture = false
  */
 def enableProguardInReleaseBuilds = false
 
+def Properties props = new Properties()
+
+def propFile = new File('../gradle.properties')
+if (propFile.canRead()){
+    props.load(new FileInputStream(propFile))
+
+    if (props!=null &&
+      props.containsKey('MYAPP_RELEASE_STORE_FILE') && props.containsKey('MYAPP_RELEASE_STORE_PASSWORD') &&
+      props.containsKey('MYAPP_RELEASE_KEY_ALIAS') &&   props.containsKey('MYAPP_RELEASE_KEY_PASSWORD')
+    ) {
+
+        android.signingConfigs.release.storeFile = file(props['MYAPP_RELEASE_STORE_FILE'])
+        android.signingConfigs.release.storePassword = props['MYAPP_RELEASE_STORE_PASSWORD']
+        android.signingConfigs.release.keyAlias = props['MYAPP_RELEASE_KEY_ALIAS']
+        android.signingConfigs.release.keyPassword = props['MYAPP_RELEASE_KEY_PASSWORD']
+    } else {
+        println 'signing.properties found but some entries are missing'
+        android.buildTypes.release.signingConfig = null
+    }
+} else {
+    println 'signing.properties not found'
+    android.buildTypes.release.signingConfig = null
+}
+
+
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
@@ -106,19 +131,7 @@ android {
         }
     }
     signingConfigs {
-        release {
-          try {
-            storeFile file(MYAPP_RELEASE_STORE_FILE)
-            storePassword MYAPP_RELEASE_STORE_PASSWORD
-            keyAlias MYAPP_RELEASE_KEY_ALIAS
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD
-          } catch(e) {
-            storeFile file("debug.keystore")
-            storePassword "androiddebugkey"
-            keyAlias "android"
-            keyPassword "android"
-          }
-        }
+        release
     }
     buildTypes {
         release {
@@ -127,6 +140,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
