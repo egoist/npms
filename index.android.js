@@ -19,7 +19,6 @@ class npms extends Component {
     this.state = {
       text: '',
       items: [],
-      dataSource: {},
       loading: false
     }
   }
