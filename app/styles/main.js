@@ -13,10 +13,13 @@ export default StyleSheet.create({
   },
   searchInput: {
     height: 60,
-    fontSize: 16,
+    justifyContent: 'center',
     borderColor: 'red',
     backgroundColor: $.mainColor,
-    color: '#fff',
     paddingLeft: 15
+  },
+  searchInputText: {
+    fontSize: 16,
+    color: '#fff',
   }
 })
