@@ -20,11 +20,19 @@ export default class Items extends Component {
       alert('Don\'t know how to open URI: ' + this.props.url)
     }
   }
+
+  handlePress = (url) => {
+    this.props.navigator.push({
+      url:url
+    })
+  }
+
   scoreColor(score) {
     if (score > 0.8) return 'green'
     if (score > 0.6) return 'orange'
     return 'red'
   }
+
   render() {
     if (this.props.items.length === 0) {
       return <Text></Text>
@@ -38,7 +46,7 @@ export default class Items extends Component {
                 <Text
                   onPress={() => {
                     const url = item.module.links.repository || item.module.links.npm
-                    this.openURL(url)
+                    this.handlePress(url)
                   }}
                   style={styles.itemTitle}>
                   {item.module.name}
@@ -62,7 +70,7 @@ export default class Items extends Component {
               })()}
               <View>
                 <Text style={styles.itemDate}>
-                  Updated at {timeago().format(item.module.date)} by <Text onPress={() => this.openURL(`https://www.npmjs.org/~${item.module.publisher.username}`)}>
+                  Updated at {timeago().format(item.module.date)} by <Text onPress={() => this.handlePress(`https://www.npmjs.org/~${item.module.publisher.username}`)}>
                   {item.module.publisher.username}
                   </Text>
                 </Text>
