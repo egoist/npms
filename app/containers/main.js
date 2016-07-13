@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {
-  TextInput,
   StatusBar,
   View,
   Text,
@@ -11,13 +10,9 @@ import vars from '../styles/vars'
 import styles from '../styles/main'
 
 export default class MainPage extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   handleSearch() {
     this.props.navigator.push({
-      name: 'result',
+      name: 'result'
     })
   }
 
@@ -27,7 +22,7 @@ export default class MainPage extends Component {
         <StatusBar
           backgroundColor={vars.mainColor} />
         <TouchableOpacity
-          onPress={()=> this.handleSearch()}
+          onPress={() => this.handleSearch()}
           style={styles.searchInput}>
           <Text style={styles.searchInputText}>
             "Type here to search modules..."

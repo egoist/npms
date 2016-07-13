@@ -30,25 +30,25 @@ export default class ResultPage extends Component {
     this.textInput.focus()
   }
 
-  async setItem(item){
-    let serchHistory = this.state.serchHistory
+  async setItem(item) {
+    const serchHistory = this.state.serchHistory
     serchHistory.push(item)
 
-    await AsyncStorage.setItem('history',JSON.stringify(serchHistory))
+    await AsyncStorage.setItem('history', JSON.stringify(serchHistory))
   }
 
   async getItem(item) {
-    let history = await AsyncStorage.getItem(item)
-    if(history){
+    const history = await AsyncStorage.getItem(item)
+    if (history) {
       this.setState({
         serchHistory: JSON.parse(history).reverse()
       })
     }
   }
 
-  async removeItem(item){
+  async removeItem(item) {
     await AsyncStorage.removeItem(item)
-    this.setState({serchHistory:[]})
+    this.setState({serchHistory: []})
   }
 
   async handleSearch(loadmore) {
@@ -70,7 +70,6 @@ export default class ResultPage extends Component {
   }
 
   async handleHistorySearch(text) {
-
     this.setState({loading: true})
 
     try {
@@ -85,10 +84,13 @@ export default class ResultPage extends Component {
 
   render() {
     const {navigator} = this.props
-    const {text,items,serchHistory,onFocus,loading} = this.state
+    const {text, items, serchHistory, onFocus, loading} = this.state
 
-    const historylist = serchHistory && serchHistory.map((o,i) =>
-      <TouchableOpacity style={{alignItems: 'center'}} key={i} onPress={ ()=> this.handleHistorySearch(o)}>
+    const historylist = serchHistory && serchHistory.map((o, i) =>
+      <TouchableOpacity
+        style={{alignItems: 'center'}}
+        key={i}
+        onPress={() => this.handleHistorySearch(o)}>
         <Text>{o}</Text>
       </TouchableOpacity>
     )
@@ -97,25 +99,27 @@ export default class ResultPage extends Component {
         <StatusBar
           backgroundColor={vars.mainColor} />
         <TextInput
-          ref={textInput => { this.textInput = textInput} }
+          ref={textInput => { this.textInput = textInput }}
           style={styles.searchInput}
           value={text}
           placeholder="Type here to search modules..."
           placeholderTextColor="white"
-          onFocus={() => this.setState({onFocus:true})}
-          onBlur={() => this.setState({onFocus:false})}
-          onChangeText={text => this.setState({text})}
+          onFocus={() => this.setState({onFocus: true})}
+          onBlur={() => this.setState({onFocus: false})}
+          onChangeText={t => this.setState({text: t})}
           onSubmitEditing={() => this.handleSearch()} />
         <Items items={items} navigator={navigator} />
 
-          { !loading && onFocus && items.length === 0 && serchHistory.length > 0 &&
+        {!loading && onFocus && items.length === 0 && serchHistory.length > 0 &&
           <View style={styles.historyBox}>
             {historylist}
-            <TouchableOpacity style={{alignItems: 'center', marginTop: 20}}onPress={()=> this.removeItem('history')}>
+            <TouchableOpacity
+              style={{alignItems: 'center', marginTop: 20}}
+              onPress={() => this.removeItem('history')}>
               <Text>Clear History</Text>
             </TouchableOpacity>
           </View>
-          }
+        }
 
         {!onFocus && !loading && items.length === 0 && (() => {
           return (
