@@ -39,7 +39,7 @@ export default class Items extends Component {
       return <Text></Text>
     }
     return (
-      <ScrollView>
+      <ScrollView keyboardShouldPersistTaps={true}>
         {this.props.items.map(item => {
           return (
             <TouchableHighlight

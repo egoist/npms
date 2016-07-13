@@ -25,20 +25,19 @@ export default class Route extends Component {
 			const navigator = this.navigator
 			const navigators = navigator.getCurrentRoutes()
 
-				if (navigator && navigators.length > 1) {
-						navigator.pop()
-						return true
-				}
-				else if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
-					//最近2秒内按过back键，可以退出应用。
-					return false
-				}
-				else {
+			if (navigator && navigators.length > 1) {
+				navigator.pop()
+				return true
+			}
+			else if (this.lastBackPressed && this.lastBackPressed + 2000 >= Date.now()) {
+				//最近2秒内按过back键，可以退出应用。
+				return false
+			} else if (navigators.length === 1) {
 				ToastAndroid.show('再按一次退出应用',ToastAndroid.SHORT)
 				this.lastBackPressed = Date.now()
 
 				return true
-				}
+			}
 		}
 
   renderScene = (route, navigator) => {

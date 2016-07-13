@@ -6,6 +6,8 @@ import {
   TextInput,
   StatusBar,
   View,
+  TouchableHighlight,
+  ScrollView
 } from 'react-native'
 
 import fetch from 'axios'

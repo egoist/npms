@@ -56,7 +56,7 @@ export default class ResultPage extends Component {
           onChangeText={(text) => this.setState({text})}
           onSubmitEditing={() => this.handleSearch()}
         />
-      <Items items={this.state.items} navigator={navigator}/>
+        <Items items={this.state.items} navigator={navigator}/>
         {!this.state.loading && this.state.items.length === 0 && (() => {
           return (
             <View style={styles.emptyState}>
