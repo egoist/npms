@@ -3,10 +3,10 @@ import $ from './vars'
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   emptyState: {
-    padding: 15,
+    padding: 15
   },
   loading: {
     padding: 15

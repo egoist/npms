@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {
-  Linking,
   Text,
   View,
   ScrollView,
@@ -10,21 +9,9 @@ import timeago from 'timeago.js'
 import styles from '../styles/items'
 
 export default class Items extends Component {
-  constructor(props) {
-    super(props)
-  }
-  async openURL(url) {
-    const supported = Linking.canOpenURL(url)
-    if (supported) {
-      Linking.openURL(url)
-    } else {
-      alert('Don\'t know how to open URI: ' + this.props.url)
-    }
-  }
-
   handlePress(url) {
     this.props.navigator.push({
-      url:url
+      url
     })
   }
 
@@ -36,10 +23,10 @@ export default class Items extends Component {
 
   render() {
     if (this.props.items.length === 0) {
-      return <Text></Text>
+      return <Text />
     }
     return (
-      <ScrollView keyboardShouldPersistTaps={true}>
+      <ScrollView keyboardShouldPersistTaps>
         {this.props.items.map(item => {
           return (
             <TouchableHighlight
@@ -58,10 +45,14 @@ export default class Items extends Component {
                   </Text>
                   <Text style={styles.itemVersion}>
                     v{item.module.version}&nbsp;/&nbsp;
-                    <Text style={{color: this.scoreColor(item.score.final)}}>{Math.round(item.score.final * 100)}</Text>
+                    <Text style={{color: this.scoreColor(item.score.final)}}>
+                      {Math.round(item.score.final * 100)}
+                    </Text>
                   </Text>
                 </View>
-                <Text style={styles.itemDescription}>{item.module.description || 'No description'}</Text>
+                <Text style={styles.itemDescription}>
+                  {item.module.description || 'No description'}
+                </Text>
                 {item.module.keywords && (() => {
                   return (
                     <View style={styles.itemKeywords}>
@@ -75,7 +66,8 @@ export default class Items extends Component {
                 })()}
                 <View>
                   <Text style={styles.itemDate}>
-                    Updated at {timeago().format(item.module.date)} by {item.module.publisher.username}
+                    Updated at {timeago().format(item.module.date)} by&nbsp;
+                    {item.module.publisher.username}
                   </Text>
                 </View>
               </View>
