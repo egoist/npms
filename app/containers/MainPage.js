@@ -17,26 +17,18 @@ export default class MainPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: '',
-      items: [],
-      loading: false
+      text: ''
     }
   }
 
-  async handleSearch(loadmore) {
-    if (!loadmore) this.setState({items: []})
-
-    this.setState({loading: true})
-    const append = loadmore ?
-      `&from=${this.state.items.length}` :
-      `&from=0`
-    try {
-      const data = await fetch(`https://api.npms.io/search?size=20&term=${this.state.text}${append}`)
-      this.setState({items: data.data.results})
-      this.setState({loading: false})
-    } catch (e) {
-      this.setState({loading: false})
-    }
+  async handleSearch() {
+    this.props.navigator.push({
+      name: 'result',
+      text: this.state.text
+    })
+    this.setState({
+      text: ''
+    })
   }
   render() {
     const {navigator} = this.props
@@ -48,24 +40,10 @@ export default class MainPage extends Component {
           style={styles.searchInput}
           placeholder="Type here to search modules..."
           placeholderTextColor="white"
+          value={this.state.text}
           onChangeText={(text) => this.setState({text})}
           onSubmitEditing={() => this.handleSearch()}
         />
-      <Items items={this.state.items} navigator={navigator}/>
-        {!this.state.loading && this.state.items.length === 0 && (() => {
-          return (
-            <View style={styles.emptyState}>
-              <Text>Nothing matches!</Text>
-            </View>
-          )
-        })()}
-        {this.state.loading && (() => {
-          return (
-            <View style={styles.loading}>
-              <Text>Loading...</Text>
-            </View>
-          )
-        })()}
       </View>
     )
   }

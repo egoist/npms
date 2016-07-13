@@ -8,6 +8,7 @@ import {
 } from 'react-native'
 import MainPage from './MainPage'
 import PostPage from './PostPage'
+import ResultPage from './ResultPage'
 
 export default class Route extends Component {
   constructor(props) {
@@ -41,18 +42,18 @@ export default class Route extends Component {
 		}
 
   renderScene = (route, navigator) => {
-    if(route.name){
-      switch(route.name) {
+    if (route.name){
+      switch (route.name) {
         case 'main' :
-          return <MainPage navigator={navigator} />
-        break
+          return <MainPage navigator={navigator} route={route}/>
+        case 'result':
+          return <ResultPage navigator={navigator} route={route}/>
         default:
-  			let Component = route.component
-  			return
-  				<Component {...route.passProps}/>
+  			  const Component = route.component
+      		return <Component {...route.passProps}/>
       }
     } else if(route.url) {
-      return <PostPage navigator={navigator} url={route.url} />
+      return <PostPage navigator={navigator} url={route.url}/>
     }
 
   }
