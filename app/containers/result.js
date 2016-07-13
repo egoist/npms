@@ -88,7 +88,7 @@ export default class ResultPage extends Component {
     const {text,items,serchHistory,onFocus,loading} = this.state
 
     const historylist = serchHistory && serchHistory.map((o,i) =>
-      <TouchableOpacity style={{alignItems: 'center'}} key={i} onPress={ ()=> this.handleHistorySearch(i)}>
+      <TouchableOpacity style={{alignItems: 'center'}} key={i} onPress={ ()=> this.handleHistorySearch(o)}>
         <Text>{o}</Text>
       </TouchableOpacity>
     )
