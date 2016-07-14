@@ -6,7 +6,9 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "build": "cd android && ./gradlew assembleRelease",
     "lint": "eslint app/**/*.js",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "android-debug": "adb install android/app/build/outputs/apk/app-debug.apk ",
+    "android-release": "adb install android/app/build/outputs/apk/app-release.apk "
   },
   "dependencies": {
     "axios": "^0.12.0",
