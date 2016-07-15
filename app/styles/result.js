@@ -12,7 +12,7 @@ export default StyleSheet.create({
     padding: 15
   },
   searchInput: {
-    height: 60,
+    height: 55,
     justifyContent: 'center',
     borderColor: 'red',
     backgroundColor: $.mainColor,

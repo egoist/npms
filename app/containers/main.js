@@ -17,7 +17,7 @@ export default class MainPage extends Component {
     return (
       <View style={styles.container}>
         <Icon.ToolbarAndroid
-          navIconName="list"
+          navIconName="menu"
           onActionSelected={() => this.handleSearch()}
           actions={[
             {title: 'search', iconName: 'search', show: 'always'}
@@ -31,5 +31,5 @@ export default class MainPage extends Component {
 }
 
 MainPage.defaultProps = {
-  title: '首页'
+  title: 'Home'
 }

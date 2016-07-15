@@ -31,7 +31,7 @@ export default class Route extends Component {
       return false
     }
 
-    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT)
+    ToastAndroid.show('Press again to exit app', ToastAndroid.SHORT)
     this.lastBackPressed = Date.now()
 
     return true
