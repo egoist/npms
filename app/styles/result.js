@@ -15,11 +15,10 @@ export default StyleSheet.create({
     height: 60,
     justifyContent: 'center',
     borderColor: 'red',
-    backgroundColor: $.mainColor
-  },
-  searchInputText: {
-    fontSize: 16,
-    color: '#fff',
-    justifyContent: 'center'
+    backgroundColor: $.mainColor,
+    color: 'white',
+    paddingLeft: 15,
+    paddingRight: 15,
+    fontSize: 18
   }
 })
