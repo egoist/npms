@@ -1,13 +1,9 @@
 import React, {Component} from 'react'
 import {
-  StatusBar,
-  View,
-  Text,
-  TouchableOpacity
+  View
 } from 'react-native'
-
-import vars from '../styles/vars'
 import styles from '../styles/main'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 export default class MainPage extends Component {
   handleSearch() {
@@ -17,18 +13,23 @@ export default class MainPage extends Component {
   }
 
   render() {
+    const { title } = this.props
     return (
       <View style={styles.container}>
-        <StatusBar
-          backgroundColor={vars.mainColor} />
-        <TouchableOpacity
-          onPress={() => this.handleSearch()}
-          style={styles.searchInput}>
-          <Text style={styles.searchInputText}>
-            "Type here to search modules..."
-          </Text>
-        </TouchableOpacity>
+        <Icon.ToolbarAndroid
+          navIconName="list"
+          onActionSelected={() => this.handleSearch()}
+          actions={[
+            {title: 'search', iconName: 'search', show: 'always'}
+          ]}
+          title={title}
+          titleColor="#fff"
+          style={styles.toolbar} />
       </View>
     )
   }
+}
+
+MainPage.defaultProps = {
+  title: '首页'
 }
