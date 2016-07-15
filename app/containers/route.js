@@ -4,11 +4,13 @@ import {
   Navigator,
   Platform,
   BackAndroid,
-  ToastAndroid
+  ToastAndroid,
+  StatusBar
 } from 'react-native'
 import MainPage from './main'
 import PostPage from './post'
 import ResultPage from './result'
+import vars from '../styles/vars'
 
 export default class Route extends Component {
   componentWillMount() {
@@ -29,7 +31,7 @@ export default class Route extends Component {
       return false
     }
 
-    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT)
+    ToastAndroid.show('Press again to exit app', ToastAndroid.SHORT)
     this.lastBackPressed = Date.now()
 
     return true
@@ -58,6 +60,8 @@ export default class Route extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <StatusBar
+          backgroundColor={vars.mainColor} />
         <Navigator
           ref={navigator => { this.navigator = navigator}} // eslint-disable-line
           renderScene={this.renderScene}

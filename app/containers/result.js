@@ -10,7 +10,7 @@ import {
 
 import fetch from 'axios'
 import vars from '../styles/vars'
-import styles from '../styles/main'
+import styles from '../styles/result'
 import Items from '../components/items'
 
 export default class ResultPage extends Component {

@@ -5,21 +5,9 @@ export default StyleSheet.create({
   container: {
     flex: 1
   },
-  emptyState: {
-    padding: 15
-  },
-  loading: {
-    padding: 15
-  },
-  searchInput: {
-    height: 60,
-    justifyContent: 'center',
-    borderColor: 'red',
+  toolbar: {
+    height: 55,
     backgroundColor: $.mainColor,
-    paddingLeft: 15
-  },
-  searchInputText: {
-    fontSize: 16,
-    color: '#fff',
+    justifyContent: 'center',
   }
 })
