@@ -1,11 +1,7 @@
 import React, {Component} from 'react'
 import {
-  View,
-  Text,
-  TouchableOpacity,
+  View
 } from 'react-native'
-
-import vars from '../styles/vars'
 import styles from '../styles/main'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
@@ -21,15 +17,14 @@ export default class MainPage extends Component {
     return (
       <View style={styles.container}>
         <Icon.ToolbarAndroid
-          navIconName='list'
-          onActionSelected={()=> this.handleSearch()}
+          navIconName="list"
+          onActionSelected={() => this.handleSearch()}
           actions={[
-            {title:'search', iconName:'search', show: 'always'}
+            {title: 'search', iconName: 'search', show: 'always'}
           ]}
           title={title}
-          titleColor='#fff'
-          style={styles.toolbar}
-          />
+          titleColor="#fff"
+          style={styles.toolbar} />
       </View>
     )
   }

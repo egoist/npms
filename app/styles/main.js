@@ -8,6 +8,6 @@ export default StyleSheet.create({
   toolbar: {
     height: 55,
     backgroundColor: $.mainColor,
-    justifyContent: 'center',
+    justifyContent: 'center'
   }
 })
